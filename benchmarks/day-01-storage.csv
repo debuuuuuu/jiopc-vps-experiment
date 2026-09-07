@@ -1,0 +1,10 @@
+test_id,category,target_path,filesystem_type,test_type,block_size,io_mode,file_size_mib,duration_seconds,throughput_mb_s,cache_status,evidence_classification,notes
+BM-STO-01,NFS Write,/home/001280863647_0,nfs4 (4.1),Sequential Write (dd zero),1M,conv=fdatasync,2048,5.33577,402.0,Direct/Sync,[REPRODUCED],Run 1 baseline sequential write
+BM-STO-02,NFS Write,/home/001280863647_0,nfs4 (4.1),Sequential Write (dd zero),1M,conv=fdatasync,2048,3.24071,663.0,Direct/Sync,[REPRODUCED],Run 2 repeated run under identical parameters
+BM-STO-03,NFS Write,/home/001280863647_0,nfs4 (4.1),Random Data Write (dd urandom),1M,conv=fdatasync,2048,6.27805,342.0,Direct/Sync,[MEASURED],Source entropy /dev/urandom write test
+BM-STO-04,NFS Read,/home/001280863647_0,nfs4 (4.1),Immediate Reread,1M,seq_read,2048,0.24381,8400.0,Cached (Page Cache),[MEASURED],"CRITICAL: Cache-affected read. Reflects kernel RAM cache, NOT NFS throughput"
+BM-STO-05,NFS Read,/home/001280863647_0,nfs4 (4.1),Fresh File Read,1M,seq_read,2048,29.38200,73.1,Uncached (Fresh File),[MEASURED],Cold fresh-file read over network mount
+BM-STO-06,Block Write,/mnt/sfdisk,ext4,Sequential Write Attempt,1M,conv=fdatasync,2048,0.00000,0.0,N/A,[VERIFIED],Failed with EACCES (Permission denied) - unprivileged user
+FS-CAP-01,Capacity,/,ext4,Filesystem Utilization,N/A,N/A,62464,N/A,N/A,Allocated,[VERIFIED],"61 GB total, 13 GB used (21%), 49 GB available"
+FS-CAP-02,Capacity,/mnt/sfdisk,ext4,Filesystem Utilization,N/A,N/A,129024,N/A,N/A,Allocated,[VERIFIED],"126 GB total, 71 GB used (59%), 49 GB available; Flatpak runtime store"
+FS-CAP-03,Capacity,/home/001280863647_0,nfs4 (4.1),Filesystem Utilization,N/A,N/A,104857600,N/A,N/A,Allocated,[VERIFIED],"100 TB reported cluster volume size, ~759 GB used. User quota unknown."
